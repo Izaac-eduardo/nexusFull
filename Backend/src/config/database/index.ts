@@ -32,7 +32,7 @@ function shouldUseSsl(): boolean {
 }
 
 const sequelizeOptions = {
-  dialect: "postgres" as const,
+  dialect: "mysql" as const,
   logging: loggingEnabled ? console.log : false,
   define: {
     underscored: true,

@@ -20,7 +20,7 @@ function createConfig() {
   if (connectionUrl) {
     return {
       use_env_variable: process.env.DATABASE_URL ? 'DATABASE_URL' : 'DB_URL',
-      dialect: 'postgres',
+      dialect: 'mysql',
       dialectOptions: useSsl
         ? {
             ssl: {
@@ -38,7 +38,7 @@ function createConfig() {
     database: readRequiredEnv(['PGDATABASE', 'DB_NAME']),
     host: readRequiredEnv(['PGHOST', 'DB_HOST']),
     port: Number(readRequiredEnv(['PGPORT', 'DB_PORT'])),
-    dialect: 'postgres',
+    dialect: 'mysql',
     dialectOptions: useSsl
       ? {
           ssl: {

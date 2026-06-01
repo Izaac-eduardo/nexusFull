@@ -1,20 +1,63 @@
-# Comandos Docker (Nexus) beekeeper
+# Docker - Nexus
 
-Execute na pasta com docker-compose.yml.
+Execute na raiz do projeto.
 
-Subir:
-docker compose up -d db
-docker compose up -d backend
-docker compose up -d frontend
+## Primeiro uso
 
-Parar:
-docker compose stop
-docker compose stop db
+```bash
+cp .env.example .env
+```
 
-Status/Logs:
+Edite `.env` e troque `DB_USER`, `DB_PASSWORD`, `DB_ROOT_PASSWORD` e `JWT_SECRET`.
+
+## Subir tudo
+
+```bash
+docker compose up -d --build
+```
+
+Aplicacao:
+
+```text
+http://localhost:8080
+```
+
+API direta:
+
+```text
+http://localhost:3000/health
+```
+
+MySQL no host:
+
+```text
+localhost:3307
+```
+
+Dentro do Docker, backend usa:
+
+```text
+db:3306
+```
+
+## Comandos uteis
+
+```bash
 docker compose ps
 docker compose logs -f backend
-(troque "backend" por "db" ou "frontend")
+docker compose logs -f db
+docker compose logs -f frontend
+docker compose stop
+```
 
-Limpar tudo:
+## Limpar containers
+
+```bash
 docker compose down
+```
+
+## Limpar containers e dados do MySQL
+
+```bash
+docker compose down -v
+```

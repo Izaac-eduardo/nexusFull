@@ -21,16 +21,16 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Definir variável de ambiente
-ENV NODE_ENV=production
-
 RUN apk add --no-cache curl
 
 # Copiar package.json apenas
 COPY Backend/package*.json ./
 
-# Instalar apenas dependências de produção
-RUN npm ci --only=production
+# Instalar dependências necessárias para runtime e migrations
+RUN npm ci
+
+# Definir variável de ambiente
+ENV NODE_ENV=production
 
 # Copiar arquivos compilados do stage anterior
 COPY --from=builder /app/dist ./dist
