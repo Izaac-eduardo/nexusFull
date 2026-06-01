@@ -20,7 +20,9 @@ services:
       - nexus_network
 
   backend:
-    build: ./Backend
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     container_name: nexus_backend
     restart: always
     environment:
@@ -51,13 +53,15 @@ services:
       - nexus_network
 
   frontend:
-    build: ./Frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
     container_name: nexus_frontend
     restart: always
     ports:
       - "${FRONTEND_PORT:?FRONTEND_PORT is required}:80"
     environment:
-      VITE_API_URL: http://backend:3000
+      VITE_API_BASE_URL: /api
     depends_on:
       - backend
     networks:
