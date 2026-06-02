@@ -27,7 +27,7 @@ COPY Backend/.sequelizerc ./
 COPY Backend/src/config/config.js ./src/config/config.js
 COPY Backend/src/migrations ./src/migrations
 COPY Backend/entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+RUN sed -i 's/\r$//' /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
 EXPOSE 3000
 
